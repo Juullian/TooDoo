@@ -21,6 +21,7 @@ body %}
   #todo_form_todoname {
     position: relative;
     max-width: 950px;
+    margin-top: -50px;
   }
   .btn-primary {
     margin-left: 15px;
@@ -35,6 +36,12 @@ body %}
   .fini-shed {
     margin-left: 10px;
     margin-top: 30px;
+  }
+  .all-done-todo {
+    margin: auto;
+    width: 22%;
+    border: 2px solid #5b5b5b;
+    padding: 10px;
   }
 </style>
 
@@ -60,7 +67,7 @@ body %}
   </form>
   {% endif %} {% if not items_finished %}
   <button
-    style="margin-left: 1100px; margin-top: -75px; display: inline"
+    style="margin-left: 1150px; display: inline; margin-top: -129px"
     class="btn btn-outline-warning"
     disabled
   >
@@ -69,7 +76,7 @@ body %}
   {% endif %} {% if items_finished %}
   <form action="/delete_all_finished" method="POST">
     <button
-      style="margin-left: 1100px; margin-top: -75px; display: inline"
+      style="margin-left: 1150px; display: inline; margin-top: -129px"
       class="btn btn-outline-warning"
       type="submit"
     >
@@ -87,7 +94,7 @@ body %}
 
 <div>
   {% if not items and not items_finished %}
-  <h5 class="fini-shed">Du hast derzeit keine Todos. 👍</h5>
+  <h5 class="all-done-todo">Du hast derzeit keine Todos. 👍</h5>
   {% endif %} {% for item in items %}
   <ul class="todo-list-item">
     <li>
@@ -101,13 +108,13 @@ body %}
     </li>
   </ul>
   {% endfor %} {% if items_finished %}
-  <h5 class="fini-shed">Finished 👍</h5>
+  <h5 class="fini-shed">Erledigt:</h5>
   {% endif %} {% for item_finish in items_finished %}
   <ul class="todo-list-item">
     <li>
       {{ item_finish.item }}
       <a href="{{ path('status_finished_item', { id: item_finish.id }) }}">
-        <button class="btn-light btn">✔️</button>
+        <button class="btn-light btn">❌</button>
       </a>
       <a href="{{ path('delete_finished_item', { id: item_finish.id }) }}">
         <button class="btn-light btn">🗑️</button>
