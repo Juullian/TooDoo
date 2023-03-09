@@ -40,6 +40,25 @@
 
 <div class="wrapper">
   <h1 class="title-todo">ToDo-App</h1>
+  {% if not items and not items_finished %}
+  <button
+    style="margin-left: 1300px; margin-top: -75px"
+    class="btn btn-outline-danger"
+    disabled
+  >
+    Delete all
+  </button>
+  {% endif %} {% if items or items_finished %}
+  <form action="/delete_all" method="POST">
+    <button
+      style="margin-left: 1300px; margin-top: -75px"
+      class="btn btn-outline-danger"
+      type="submit"
+    >
+      Delete all
+    </button>
+  </form>
+  {% endif %}
 </div>
 
 <div>
@@ -49,7 +68,9 @@
 </div>
 
 <div>
-  {% for item in items %}
+  {% if not items and not items_finished %}
+  <h5 class="fini-shed">Du hast derzeit keine Todos. 👍</h5>
+  {% endif %} {% for item in items %}
   <ul class="todo-list-item">
     <li>
       {{ item.item }}

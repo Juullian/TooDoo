@@ -11,8 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class TodoController extends AbstractController
 {   
@@ -53,11 +52,12 @@ class TodoController extends AbstractController
             return $this->redirectToRoute("app_todo");
         }
 
+
         return $this->render('todo/index.html.twig', [
             'controller_name' => 'TodoController',
             'todo_form' => $form->createView(),
             "items" => $items,
-            "items_finished" => $items_finished
+            "items_finished" => $items_finished,
         ]);
     }
 
@@ -124,5 +124,24 @@ class TodoController extends AbstractController
         } else {
         return $this->redirectToRoute("app_todo");
         }
+    }
+    #[Route("/delete_all", name: "deleteall")]
+    public function deleteAll(EntityManagerInterface $entityManager) {
+        $repo = $entityManager->getRepository(ItemsToDoList::class);
+        $items_notmade = $repo->findAll();
+        foreach($items_notmade as $item){
+            $del = $entityManager->getRepository(ItemsToDoList::class)->find($item->getId());
+            $entityManager->remove($del);
+            $entityManager->flush();
+        } 
+
+        $repo2 = $entityManager->getRepository(ItemsFinsihed::class);
+        $items_finished = $repo2->findAll();
+        foreach($items_finished as $item_f){
+            $del_f = $entityManager->getRepository(ItemsFinsihed::class)->find($item_f->getId());
+            $entityManager->remove($del_f);
+            $entityManager->flush();
+        } 
+        return $this->redirectToRoute("app_todo");
     }
 }
