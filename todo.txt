@@ -13,9 +13,3 @@ Feature idee:
     - Bearbeiten Button
     - Login page machen
     - Labels hinzufügen (z.B arbeit, zuhause, shopping)
-
-
-
-
-test
-
