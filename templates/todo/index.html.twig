@@ -32,6 +32,10 @@
   .title-todo {
     margin-left: 15px;
   }
+  .fini-shed {
+    margin-left: 10px;
+    margin-top: 30px;
+  }
 </style>
 
 <div class="wrapper">
@@ -53,6 +57,20 @@
         <button class="btn-light btn">✔️</button>
       </a>
       <a href="{{ path('delete_item', { id: item.id }) }}">
+        <button class="btn-light btn">🗑️</button>
+      </a>
+    </li>
+  </ul>
+  {% endfor %} {% if items_finished %}
+  <h5 class="fini-shed">Finished 👍</h5>
+  {% endif %} {% for item_finish in items_finished %}
+  <ul class="todo-list-item">
+    <li>
+      {{ item_finish.item }}
+      <a href="{{ path('status_finished_item', { id: item_finish.id }) }}">
+        <button class="btn-light btn">✔️</button>
+      </a>
+      <a href="{{ path('delete_finished_item', { id: item_finish.id }) }}">
         <button class="btn-light btn">🗑️</button>
       </a>
     </li>

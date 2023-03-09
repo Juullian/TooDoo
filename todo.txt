@@ -1,7 +1,5 @@
 ToDos:
-    
-    ToDos abhacken:
-        Neue datenbank machen für abgehackte ToDos. Dann neue Route erstellen (delete_finished).
+
 
     Alle ToDos löschen button:
         1. Button um ALLE zu löschen
@@ -13,3 +11,5 @@ Feature idee:
     - Bearbeiten Button
     - Login page machen
     - Labels hinzufügen (z.B arbeit, zuhause, shopping)
+
+
