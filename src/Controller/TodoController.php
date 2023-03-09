@@ -125,6 +125,7 @@ class TodoController extends AbstractController
         return $this->redirectToRoute("app_todo");
         }
     }
+
     #[Route("/delete_all", name: "deleteall")]
     public function deleteAll(EntityManagerInterface $entityManager) {
         $repo = $entityManager->getRepository(ItemsToDoList::class);
@@ -135,6 +136,18 @@ class TodoController extends AbstractController
             $entityManager->flush();
         } 
 
+        $repo2 = $entityManager->getRepository(ItemsFinsihed::class);
+        $items_finished = $repo2->findAll();
+        foreach($items_finished as $item_f){
+            $del_f = $entityManager->getRepository(ItemsFinsihed::class)->find($item_f->getId());
+            $entityManager->remove($del_f);
+            $entityManager->flush();
+        } 
+        return $this->redirectToRoute("app_todo");
+    }
+
+    #[Route("/delete_all_finished", name: "deleteallfinished")]
+    public function deleteAllFinished(EntityManagerInterface $entityManager) {
         $repo2 = $entityManager->getRepository(ItemsFinsihed::class);
         $items_finished = $repo2->findAll();
         foreach($items_finished as $item_f){

@@ -1,5 +1,5 @@
-{% extends 'base.html.twig' %} {% block title %}Hello TodoController!{% endblock
-%} {% block body %}
+{% extends 'base.html.twig' %} {% block title %}Todo App!{% endblock %} {% block
+body %}
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
   rel="stylesheet"
@@ -42,20 +42,38 @@
   <h1 class="title-todo">ToDo-App</h1>
   {% if not items and not items_finished %}
   <button
-    style="margin-left: 1300px; margin-top: -75px"
+    style="margin-left: 1300px; margin-top: -75px; display: inline"
     class="btn btn-outline-danger"
     disabled
   >
-    Delete all
+    Alle löschen
   </button>
   {% endif %} {% if items or items_finished %}
   <form action="/delete_all" method="POST">
     <button
-      style="margin-left: 1300px; margin-top: -75px"
+      style="margin-left: 1300px; margin-top: -75px; display: inline"
       class="btn btn-outline-danger"
       type="submit"
     >
-      Delete all
+      Alle löschen
+    </button>
+  </form>
+  {% endif %} {% if not items_finished %}
+  <button
+    style="margin-left: 1100px; margin-top: -75px; display: inline"
+    class="btn btn-outline-warning"
+    disabled
+  >
+    Fertige löschen
+  </button>
+  {% endif %} {% if items_finished %}
+  <form action="/delete_all_finished" method="POST">
+    <button
+      style="margin-left: 1100px; margin-top: -75px; display: inline"
+      class="btn btn-outline-warning"
+      type="submit"
+    >
+      Fertige löschen
     </button>
   </form>
   {% endif %}

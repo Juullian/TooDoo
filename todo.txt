@@ -1,15 +1,8 @@
 ToDos:
 
-
-    Alle ToDos löschen button:
-        1. Button um ALLE zu löschen
-        2. Button um nur ABGEHACKTe zu löschen
-
     Design schöner machen
 
 Feature idee:
     - Bearbeiten Button
     - Login page machen
     - Labels hinzufügen (z.B arbeit, zuhause, shopping)
-
-
